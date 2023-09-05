@@ -34,35 +34,41 @@ class _MyCalcState extends State<MyCalc> {
                 children: [
                   //data section
                   Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10))),
-                    child: Column(
-                      children: [
-                        Spacer(),
-                        //realtime
-                        Text(
-                          "1234",
-                          style: TextStyle(
-                              fontSize: 60, fontWeight: FontWeight.w400),
+                      height: 200,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10))),
+                      padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Column(
+                          children: [
+                            Spacer(),
+                            //operands with operators
+                            Text(
+                              "1234",
+                              style: TextStyle(
+                                  fontSize: 50, fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            //final answer
+
+                            Text(
+                              "1234",
+                              style: TextStyle(
+                                  fontSize: 50, fontWeight: FontWeight.w400),
+                            ),
+                            Spacer()
+                          ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        //answer
-                        Text(
-                          "1234",
-                          style: TextStyle(
-                              fontSize: 70, fontWeight: FontWeight.w500),
-                        ),
-                        Spacer()
-                      ],
-                    ),
-                  ),
+                      )),
                   //symbol section
                   Container(
                     padding: EdgeInsets.all(20),
@@ -71,7 +77,7 @@ class _MyCalcState extends State<MyCalc> {
                         //row1
                         Row(
                           children: [
-                            //button1
+                            //button1 clear all
                             Container(
                               decoration: BoxDecoration(
                                 color: Color.fromRGBO(160, 160, 160, 1),
@@ -88,7 +94,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button2
+                            //button2 backspace
                             Container(
                               decoration: BoxDecoration(
                                 color: Color.fromRGBO(160, 160, 160, 1),
@@ -102,7 +108,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button3
+                            //button3 percentage sign
                             Container(
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(160, 160, 160, 1),
@@ -115,7 +121,7 @@ class _MyCalcState extends State<MyCalc> {
                                   size: 38,
                                 )),
                             Spacer(),
-                            //button4
+                            //button4 divide button
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade700,
@@ -137,7 +143,7 @@ class _MyCalcState extends State<MyCalc> {
                         //row2
                         Row(
                           children: [
-                            //button1
+                            //button1 7 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -154,7 +160,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button2
+                            //button2 8 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -171,7 +177,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button3
+                            //button3 9 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -188,7 +194,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button4
+                            //button4 multiply sign
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade700,
@@ -210,7 +216,7 @@ class _MyCalcState extends State<MyCalc> {
                         //row3
                         Row(
                           children: [
-                            //button1
+                            //button1 4 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -227,7 +233,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button2
+                            //button2 5 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -244,7 +250,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button3
+                            //button3 6 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -261,7 +267,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button4
+                            //button4 minus sign
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade700,
@@ -283,7 +289,7 @@ class _MyCalcState extends State<MyCalc> {
                         //row4
                         Row(
                           children: [
-                            //button1
+                            //button1 1 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -300,7 +306,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button2
+                            //button2 2 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -317,7 +323,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button3
+                            //button3 3 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -334,7 +340,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button4
+                            //button4 plus sign
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.amber.shade700,
@@ -356,7 +362,7 @@ class _MyCalcState extends State<MyCalc> {
                         //row5
                         Row(
                           children: [
-                            //button1
+                            //button1 0 number
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -373,7 +379,7 @@ class _MyCalcState extends State<MyCalc> {
                               ),
                             ),
                             Spacer(),
-                            //button2
+                            //button2 decimal sign
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade800,
@@ -391,7 +397,7 @@ class _MyCalcState extends State<MyCalc> {
                             ),
 
                             Spacer(),
-                            //button3
+                            //button3 equals to sign
                             Container(
                                 decoration: BoxDecoration(
                                   color: Colors.amber.shade700,
