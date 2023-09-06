@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:math_expressions/math_expressions.dart';
+
 void main() {
   runApp(const MyCalc());
 }
@@ -20,10 +22,27 @@ class _MyCalcState extends State<MyCalc> {
   String allCalculations = "";
 
   //shows current input
-  var inputField = 0;
+  double inputField = 0;
+
+  //last input symbol check
+  bool isLastInputSymbol = false;
+
+//controller to update result realtime
+  TextEditingController inputController = TextEditingController();
 
   // Function to concatenate operations and update the string allCalculations
   void addOperations(String newdata) {
+    if (newdata == "+" || newdata == "-" || newdata == "*" || newdata == "/") {
+      // Check if the last input was a symbol
+      if (isLastInputSymbol) {
+        // Remove the last character (symbol) from allCalculations
+        allCalculations =
+            allCalculations.substring(0, allCalculations.length - 1);
+      }
+      isLastInputSymbol = true;
+    } else {
+      isLastInputSymbol = false;
+    }
     allCalculations += newdata;
   }
 
@@ -38,6 +57,7 @@ class _MyCalcState extends State<MyCalc> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
 
           //appbar
@@ -582,7 +602,29 @@ class _MyCalcState extends State<MyCalc> {
 
                             Spacer(),
                             //button3 equals to sign
-                            Container(
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  print(allCalculations);
+
+                                  // Create an expression parser
+                                  Parser parser = Parser();
+                                  Expression expression =
+                                      parser.parse(allCalculations);
+
+                                  // Create a context to evaluate the expression
+                                  ContextModel contextModel = ContextModel();
+
+                                  // Evaluate the expression
+                                  double result = expression.evaluate(
+                                      EvaluationType.REAL, contextModel);
+                                  print(result.toStringAsFixed(2));
+                                  inputField =
+                                      double.parse(result.toStringAsFixed(2));
+                                  allCalculations = "";
+                                });
+                              },
+                              child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.amber.shade700,
                                   borderRadius:
@@ -593,7 +635,9 @@ class _MyCalcState extends State<MyCalc> {
                                   CupertinoIcons.equal,
                                   size: 30,
                                   color: Colors.white,
-                                )),
+                                ),
+                              ),
+                            )
                           ],
                         )
                       ],
