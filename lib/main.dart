@@ -54,6 +54,25 @@ class _MyCalcState extends State<MyCalc> {
     }
   }
 
+//function to show live result
+  void updateResult() {
+    setState(() {
+      print(allCalculations);
+
+      // Create an expression parser
+      Parser parser = Parser();
+      Expression expression = parser.parse(allCalculations);
+
+      // Create a context to evaluate the expression
+      ContextModel contextModel = ContextModel();
+
+      // Evaluate the expression
+      double result = expression.evaluate(EvaluationType.REAL, contextModel);
+      print(result.toStringAsFixed(2));
+      inputField = double.parse(result.toStringAsFixed(2));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -88,7 +107,7 @@ class _MyCalcState extends State<MyCalc> {
                     padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                     child: Container(
                       //result panel
-
+                      padding: EdgeInsets.all(15),
                       child: Column(
                         children: [
                           Spacer(),
@@ -96,10 +115,14 @@ class _MyCalcState extends State<MyCalc> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Container(
-                              child: Text(
-                                "$allCalculations",
-                                style: TextStyle(
-                                    fontSize: 50, fontWeight: FontWeight.w500),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  "$allCalculations",
+                                  style: TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                           ),
@@ -108,10 +131,14 @@ class _MyCalcState extends State<MyCalc> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Container(
-                              child: Text(
-                                "$inputField",
-                                style: TextStyle(
-                                    fontSize: 50, fontWeight: FontWeight.w400),
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  "$inputField",
+                                  style: TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                           ),
@@ -161,6 +188,7 @@ class _MyCalcState extends State<MyCalc> {
                                   removeLastOperation();
                                   inputField = 0;
                                   print('backspace');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -228,6 +256,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("7");
                                   inputField = 7;
                                   print('7');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -254,6 +283,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("8");
                                   inputField = 8;
                                   print('8');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -280,6 +310,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("9");
                                   inputField = 9;
                                   print('9');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -337,6 +368,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("4");
                                   inputField = 4;
                                   print('4');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -363,6 +395,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("5");
                                   inputField = 5;
                                   print('5');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -389,6 +422,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("6");
                                   inputField = 6;
                                   print('6');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -415,6 +449,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("-");
                                   inputField = 9;
                                   print('9');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -446,6 +481,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("1");
                                   inputField = 1;
                                   print('1');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -472,6 +508,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("2");
                                   inputField = 2;
                                   print('2');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -498,6 +535,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("3");
                                   inputField = 3;
                                   print('3');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -522,8 +560,8 @@ class _MyCalcState extends State<MyCalc> {
                               onTap: () {
                                 setState(() {
                                   addOperations("+");
-                                  inputField = 9;
-                                  print('9');
+                                  // inputField = 9;
+                                  print('+');
                                 });
                               },
                               child: Container(
@@ -555,6 +593,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations("0");
                                   inputField = 0;
                                   print('0');
+                                  updateResult();
                                 });
                               },
                               child: Container(
@@ -581,6 +620,7 @@ class _MyCalcState extends State<MyCalc> {
                                   addOperations(".");
                                   inputField = 9;
                                   print('.');
+                                  updateResult();
                                 });
                               },
                               child: Container(
